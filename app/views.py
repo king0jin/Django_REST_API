@@ -22,3 +22,12 @@ def booksAPI(request):
     serializer = BookSerializer(books, many=True)
     #JSON으로 출력
     return Response(serializer.data, status.HTTP_200_OK)
+
+@api_view(['GET'])
+def bookAPI(request, book_id):
+    #book_id에 해당하는 데이터 가져오기
+    book = get_object_or_404(Book, book_id = book_id)
+    #가져온 데이터를 JSON문자열로 변환
+    serializer = BookSerializer(book)
+    #JSON으로 출력
+    return Response(serializer.data, status.HTTP_200_OK)
