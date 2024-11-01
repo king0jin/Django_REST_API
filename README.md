@@ -1,7 +1,13 @@
 # Django_REST_API
 Django로 REST API 만들기
+
+
 **pip install django**
+
+
 **pip install djangorestframework**
+
+
 **pip install mysqlclient**
 
 ## Djangoframework : Django와 다른 점
