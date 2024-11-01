@@ -25,6 +25,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #1. 기본 요청 설정
     path('', views.helloAPI), #app.views에 있는 helloAPI함수 호출
-    #app으로 시작하는 URL에 대한 처리는 app.urls파일에서 처리
-    path('app', include('app.urls')), 
+    #2. app으로 시작하는 URL에 대한 처리는 app.urls파일에서 처리
+    path('app/', include('app.urls')), 
 ]
