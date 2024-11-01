@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax 요청에 대한 응답입니다</title>
+</head>
+<body>
+    <h1>ajax</h1>
+</body>
+<script>
+    // ajax 객체를 생성
+    let request = new XMLHttpRequest();
+    // 전체 데이터를 가져오는 요청을 생성
+    request.open('GET', '/app/books/'); // 절대 경로로 수정
+    // 요청 전송
+    request.send('');
+    // 응답이 오면 호출될 함수를 등록
+    request.addEventListener('load', function(){
+        if (request.status >= 200 && request.status < 300) {
+            // 응답 처리
+            let responseData = (request.responseText);
+            alert('응답 데이터: ' + responseData);
+        } else {
+            alert('요청 실패: ' + request.status); // 오류 처리
+        }
+    });
+    request.addEventListener('error', function() {
+        alert('요청 중 오류가 발생했습니다.');
+    });
+</script>
+</html>
