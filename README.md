@@ -50,6 +50,8 @@ secret key, debug mode, 개발환경에서 수행되는 내용을 다르게 만�
 2. 애플리케이션 views.py : 요청 URL의 처리 함수를 정의한다
 ### 애플리케이션에 urls.py를 생성하는 이유
 + 프로젝트 하나의 urls.py에 URL을 정의하면 관리하기 어려움으로 애플리케이션 별로 urls.py를 생성하여 해당 애플리케이션 관련 URL을 관리, 수정 할 수 있다.
+
+
 **프로젝트 urls.py에 include를 사용하여 각각의 애플리케이션 URL설정을 하여 인식할 수 있게 하면된다**
 
 ## Response
