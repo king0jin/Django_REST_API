@@ -17,6 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+#app애플리케이션에 있는 views.py내용 가져오기
+from app import views
+
 urlpatterns = [
+    #admin요청이 왔을 때, admin.site에 있는 urls함수 호출
     path('admin/', admin.site.urls),
+    #1. 기본 요청 설정
+    path('', views.helloAPI), #app.views에 있는 helloAPI함수 호출
 ]
