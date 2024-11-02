@@ -8,30 +8,22 @@
     <h1>ajax 요청 테스트</h1>
 </body>
 <script>
-    // ajax 객체를 생성
-    let request = new XMLHttpRequest();
-    // 전체 데이터를 가져오는 요청을 생성
-    request.open('GET', '/app/books/'); // 절대 경로로 수정
-    // 요청 전송
-    request.send('');
-    // 응답이 오면 호출될 함수를 등록
-    request.addEventListener('load', function(){
-        if (request.status >= 200 && request.status < 300) {
-            // 응답 처리
-            let responseData = (request.responseText);
-            //JSON 파싱
-            let jsondata = JSON.parse(responseData)
-            //데이터 사용
-            for(let idx in jsondata){
-                alert(jsondata[idx].book_id)
+    fetch('/app/books/')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('요청 실패: ' + response.status);
             }
-        } else {
-            alert('요청 실패: ' + request.status); // 오류 처리
-        }
-    });
-    request.addEventListener('error', function() {
-        alert('요청 중 오류가 발생했습니다.');
-    });
+            return response.json();
+        }) //.then(reponse => response.json()) == jsondata
+        .then(jsondata => {
+            // 파싱된 JSON 데이터의 각각의 객체 - Book
+            jsondata.forEach(Book => {
+                alert(Book.book_id);
+            });
+        })
+        .catch(error => {
+            alert('요청 중 오류가 발생했습니다: ' + error.message);
+        });
 
     // POST 요청 함수 정의
     function sendPostRequest() {
