@@ -41,6 +41,10 @@ def bookAPI(request, book_id):
     #JSON으로 출력
     return Response(serializer.data, status.HTTP_200_OK)
 
-#4. ajax요청시, ajax함수 
+#5. ajax요청시, ajax함수 
 def ajax(request):
     return render(request, "ajax.html")
+
+#6. axios요청시, axios함수
+def axios(request):
+    return render(request, "axios.html")

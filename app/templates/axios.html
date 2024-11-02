@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>요청에 대한 Axios를 사용한 응답입니다</title>
+    <!-- 외부 라이브러리 추가 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>Axios를 사용한 요청 테스트</h1>
+    <script>
+        // 페이지 로드 시 자동으로 POST 요청 보내기
+        window.addEventListener('load', function() {
+            sendPostRequest();
+        });
+    
+        // GET 요청으로 데이터 가져오기
+        axios.get('/app/books/')
+            .then(response => {
+                // 응답(성공)
+                response.data.forEach(Book => {
+                    alert(Book.book_id); // 각 Book 객체의 book_id를 alert로 출력
+                });
+            })
+            .catch(error => {
+                // 응답(실패)
+                alert('요청 중 오류가 발생했습니다: ' + error.message);
+            })
+    
+        // POST 요청 함수 정의
+        function sendPostRequest() {
+            const postdata = {
+                'book_id': 9,
+                'book_name': '명지대맛집',
+                'author': '허재석',
+                'category': '일반',
+                'price': 8000,
+                'published_date': '2027-06-18'
+            };
+            axios.post('/app/books/', postdata)
+                .then(response => {
+                    // 응답(성공)
+                    alert('데이터가 반영되었습니다.');
+                })
+                .catch(error => {
+                    // 응답(실패)
+                    alert('요청 중 오류가 발생했습니다: ' + error.message);
+                })
+        }
+    </script>
+</body>
+</html>
