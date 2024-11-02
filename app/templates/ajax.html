@@ -19,7 +19,12 @@
         if (request.status >= 200 && request.status < 300) {
             // 응답 처리
             let responseData = (request.responseText);
-            alert('응답 데이터: ' + responseData);
+            //JSON 파싱
+            let jsondata = JSON.parse(responseData)
+            //데이터 사용
+            for(let idx in jsondata){
+                alert(jsondata[idx].book_id)
+            }
         } else {
             alert('요청 실패: ' + request.status); // 오류 처리
         }
