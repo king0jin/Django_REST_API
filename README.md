@@ -69,7 +69,16 @@ secret key, debug mode, 개발환경에서 수행되는 내용을 다르게 만�
 3. HTTP응답을 쉽게 반환할 수 있도록 해준다 - Response 객체를 사용하여 JSON형태로 응답을 반환
 4. 기본 적인 권한, 인증 처리와 함께 사용할 수 있다
 
-
+## AJAX - Asynchronous JavaScript and XML
+웹페이지의 새로고침 없이 서버와 비동기적으로 데이터를 주고 받을 수 있는 기술
+### 구현과정
+1. XMLHttpRequest 인스턴스 생성
+2. 이벤트 리스너 등록
+3. 서버로 전송할 데이터 준비
+4. 연결 요청 - open()
+5. 요청 전송 - send()
+6. 응답처리 - status확인
+7. 결과로 화면 작업 수행 
 
   
 
