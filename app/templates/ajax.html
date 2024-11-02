@@ -5,7 +5,7 @@
     <title>ajax 요청에 대한 응답입니다</title>
 </head>
 <body>
-    <h1>ajax</h1>
+    <h1>ajax 요청 테스트</h1>
 </body>
 <script>
     // ajax 객체를 생성
@@ -31,6 +31,39 @@
     });
     request.addEventListener('error', function() {
         alert('요청 중 오류가 발생했습니다.');
+    });
+
+    // POST 요청 함수 정의
+    function sendPostRequest() {
+        // ajax 객체를 생성
+        let postRequest = new XMLHttpRequest();
+        // 전체 데이터를 가져오는 요청을 생성
+        postRequest.open('POST', '/app/books/', true);
+        // FormData객체에 전송할 데이터 추가
+        let formData = new FormData();
+        formData.append('book_id', 4);
+        formData.append('book_name', '어린왕자');
+        formData.append('author', '생텍쥐베리');
+        formData.append('category', '문학');
+        formData.append('price', 7200);
+        formData.append('published_date', '2015-10-20');
+        //POST 요청 전송
+        postRequest.send(formData);
+        //POST 응답 처리
+        postRequest.addEventListener('load', function() {
+            if (postRequest.status >= 200 && postRequest.status < 300) {
+                alert("POST 요청 성공: " + postRequest.responseText);
+            } else {
+                alert('POST 요청 실패: ' + postRequest.status);
+            }
+        });
+        postRequest.addEventListener('error', function() {
+            alert('POST 요청 중 오류가 발생했습니다.');
+        });
+    }
+    // 페이지 로드 시 자동으로 POST 요청 보내기
+    window.addEventListener('load', function() {
+        sendPostRequest();
     });
 </script>
 </html>
