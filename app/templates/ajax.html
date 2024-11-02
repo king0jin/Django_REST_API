@@ -8,6 +8,10 @@
     <h1>ajax 요청 테스트</h1>
 </body>
 <script>
+    // 페이지 로드 시 자동으로 POST 요청 보내기
+    window.addEventListener('load', function() {
+        sendPostRequest();
+    });
     fetch('/app/books/')
         .then(response => {
             if (!response.ok) {
@@ -27,35 +31,31 @@
 
     // POST 요청 함수 정의
     function sendPostRequest() {
-        // ajax 객체를 생성
-        let postRequest = new XMLHttpRequest();
-        // 전체 데이터를 가져오는 요청을 생성
-        postRequest.open('POST', '/app/books/', true);
-        // FormData객체에 전송할 데이터 추가
-        let formData = new FormData();
-        formData.append('book_id', 4);
-        formData.append('book_name', '어린왕자');
-        formData.append('author', '생텍쥐베리');
-        formData.append('category', '문학');
-        formData.append('price', 7200);
-        formData.append('published_date', '2015-10-20');
-        //POST 요청 전송
-        postRequest.send(formData);
-        //POST 응답 처리
-        postRequest.addEventListener('load', function() {
-            if (postRequest.status >= 200 && postRequest.status < 300) {
-                alert("POST 요청 성공: " + postRequest.responseText);
-            } else {
-                alert('POST 요청 실패: ' + postRequest.status);
-            }
-        });
-        postRequest.addEventListener('error', function() {
-            alert('POST 요청 중 오류가 발생했습니다.');
-        });
+        const postdata = {
+            'book_id': 8,
+            'book_name': '숙대맛집',
+            'author': '김영진',
+            'category': '일반',
+            'price': 8000,
+            'published_date': '2027-04-18'
+        };
+        fetch('/app/books/', {
+            method: 'POST', 
+            headers: {'Content-Type' : 'application/json'}, 
+            body: JSON.stringify(postdata)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('요청 실패: ' + response.status);
+                }
+                return response.json();  //data로 반환
+            })
+            .then(postdata => {
+                alert('데이터가 반영되었습니다.');
+            })
+            .catch(error => {
+                alert('요청 중 오류가 발생했습니다: ' + error.message);
+            });
     }
-    // 페이지 로드 시 자동으로 POST 요청 보내기
-    window.addEventListener('load', function() {
-        sendPostRequest();
-    });
 </script>
 </html>
