@@ -27,7 +27,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+# 특정 Origin에서만 오는 요청만 허용
+CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:3000','http://localhost:3000',...]
+# 모든 Origin에서만 CORS 요청을 허용
+CORS_ORIGIN_ALLOW_ALL = True
+# CORS요청 시 허용할 메서드 설정
+CORS_ALLOW_METHODS = (
+    'GET',
+    'POST',
+)
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,9 +47,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'app',
+    'corsheaders', #CORS 관련 추가 
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware', # CORS 관련 추가
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
