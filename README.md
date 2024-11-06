@@ -1,5 +1,5 @@
 # Django_REST_API
-Django로 REST API 만들기
+Django에서 Django REST Framework 라이브러리를 이용하여 REST API 구현하기
 
 
 **pip install django**
